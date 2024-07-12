@@ -1,0 +1,13 @@
+{
+    "asset": [
+    {
+        "type": "cash",
+        "amount": 123
+    },{
+        "type": "stock",
+        "amount": 456
+    },{
+        "type": "bond",
+        "amount": 789
+    }]
+}
