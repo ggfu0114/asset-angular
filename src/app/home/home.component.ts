@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AssetComponent } from '../asset/asset.component';
 import { AssetCategory } from '../assetcategory';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink,RouterModule } from '@angular/router';
-
+import { Asset } from '../asset'
+import { RouterLink, RouterModule } from '@angular/router';
+import { AssetService } from '../asset.service'
 
 @Component({
   selector: 'app-home',
@@ -27,13 +28,10 @@ import { RouterLink,RouterModule } from '@angular/router';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  myAssetCategory: AssetCategory[] = [{
-    type: 'cash',
-    value: 100,
-    ratio: 25.5
-  }, {
-    type: 'stock',
-    value: 200,
-    ratio: 74.5
-  }];
+  assetService = inject(AssetService);
+  myAssetCategory: Asset[] = []
+  constructor() {
+    this.assetService.listMyAsset()
+      .subscribe(assets => this.myAssetCategory = assets)
+  }
 }
