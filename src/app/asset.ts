@@ -4,6 +4,7 @@ export interface Asset {
     Code: string;
     Label: string;
     Market: string;
+    Value: number;
 }
 export interface AssetCategory {
     type: string;

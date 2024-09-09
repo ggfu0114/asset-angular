@@ -4,42 +4,56 @@ import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AssetService } from '../asset.service'
 import { Router } from '@angular/router';
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-asset-add',
   standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
-
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCardModule
   ],
   template: `
   <div>
-    <section class="listing-apply">
         <h2 class="section-heading">新增資產</h2>
         <form [formGroup]="applyForm" (submit)="addMyAsset()">
-          
-          <label class="input-group-text" for="assetType">類別</label>
-            <select class="form-select" id="assetType">
-                <option selected>請選擇類別</option>
-                <option>股票</option>
-                <option>現金</option>
-                <option>債卷</option>
-            </select>
+           <mat-card>
+        <mat-card-content>
+          <mat-form-field>
+            <mat-label>資產類別</mat-label>
+            <mat-select id="assetType">
+              <mat-option value="stock">股票</mat-option>
+              <mat-option value="cash">現金</mat-option>
+              <mat-option value="bond">債卷</mat-option>
+            </mat-select>
+          </mat-form-field>
 
-          
-          <label for="assetCode">代碼</label>
-          <input id="assetCode" type="text" formControlName="assetCode">
+          <mat-form-field>
+            <mat-label>代碼</mat-label>
+            <input matInput formControlName="assetCode">
+          </mat-form-field>
 
-          <label for="assetAmount">金額</label>
-          <input id="assetAmount" type="number" formControlName="assetAmount">
+          <mat-form-field>
+            <mat-label>金額</mat-label>
+            <input matInput formControlName="assetAmount">
+          </mat-form-field>
 
-          <label for="assetBank">銀行</label>
-          <input id="assetBank" type="text" formControlName="assetBank">
-
-          <button type="submit" class="primary">Add</button>
+          <mat-form-field>
+            <mat-label>銀行</mat-label>
+            <input matInput formControlName="assetBank">
+          </mat-form-field>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button type="submit" class="primary">新增</button>
+          </mat-card-actions>
+          </mat-card>
         </form>
-      </section>
       </div>
   `,
   styleUrl: './asset-add.component.css'
